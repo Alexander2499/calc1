@@ -9,7 +9,7 @@ public class Calc {
 
     public static String calc(String SourceString) throws Exception {
 
-        int result;
+        int result = 0;
         int one_condition = 0;
         int Z1 = 0;
         //int Z2 = 0;
@@ -32,7 +32,7 @@ public class Calc {
             }
         }
 
-        if (Z1 > 0 && Z1 < 2) {
+        if (Z1 == 1) {
             throw new Exception("Ошибка");
         }
 
@@ -69,7 +69,6 @@ public class Calc {
                 case "VIII":
                     Roman_To_Arab[0] = "8";
                     break;
-
 
                 case "IX":
                     Roman_To_Arab[0] = "9";
@@ -119,61 +118,55 @@ public class Calc {
                 case "X":
                     Roman_To_Arab[2] = "10";
             }
+        }
             if (Z1 == 0) {
-
                 one_condition = Integer.parseInt(ArrayExpression[0]) + Integer.parseInt(ArrayExpression[2]);
-            }
-            if (one_condition <= 20) {
-                switch (ArrayExpression[1]) {
-                    case "+":
-                        result = Integer.parseInt(Roman_To_Arab[0]) + Integer.parseInt(Roman_To_Arab[2]);
-                        return(intToRoman(result));
-                    case "/":
-                        result = Integer.parseInt(Roman_To_Arab[0]) / Integer.parseInt(Roman_To_Arab[2]);
-                        return(intToRoman(result));
-                    case "*":
-                        result = Integer.parseInt(Roman_To_Arab[0]) * Integer.parseInt(Roman_To_Arab[2]);
-                        return(intToRoman(result));
-
-                    case "-":
-                        result = Integer.parseInt(Roman_To_Arab[0]) - Integer.parseInt(Roman_To_Arab[2]);
-                        return(intToRoman(result));
+                if (one_condition <= 20) {
+                    switch (ArrayExpression[1]) {
+                        case "+":
+                            result = Integer.parseInt(ArrayExpression[0]) + Integer.parseInt(ArrayExpression[2]);
+                            return (String.valueOf(result));
+                        case "/":
+                            result = Integer.parseInt(ArrayExpression[0]) / Integer.parseInt(ArrayExpression[2]);
+                            return (String.valueOf(result));
+                        case "*":
+                            result = Integer.parseInt(ArrayExpression[0]) * Integer.parseInt(ArrayExpression[2]);
+                            return (String.valueOf(result));
+                        case "-":
+                            result = Integer.parseInt(ArrayExpression[0]) - Integer.parseInt(ArrayExpression[2]);
+                            return (String.valueOf(result));
+                    }
                 }
             }
-            throw new Exception();
-        }
-
 
         if (Z1 == 2) {
 
-
             switch (ArrayExpression[1]) {
                 case "+":
-                    result = Integer.parseInt(ArrayExpression[0]) + Integer.parseInt(ArrayExpression[2]);
+                    result = Integer.parseInt(Roman_To_Arab[0]) + Integer.parseInt(Roman_To_Arab[2]);
                     if (result < 1) {
                         throw new Exception("Ошибка");
                     }
                     return String.valueOf(result);
                 case "/":
-                    result = Integer.parseInt(ArrayExpression[0]) / Integer.parseInt(ArrayExpression[2]);
+                    result = Integer.parseInt(Roman_To_Arab[0]) / Integer.parseInt(Roman_To_Arab[2]);
                     if (result < 1) {
                         throw new Exception("Ошибка");
                     }
                     return (intToRoman(result));
                 case "*":
-                    result = Integer.parseInt(ArrayExpression[0]) * Integer.parseInt(ArrayExpression[2]);
+                    result = Integer.parseInt(Roman_To_Arab[0]) * Integer.parseInt(Roman_To_Arab[2]);
                     if (result < 1) {
                         throw new Exception("Ошибка");
                     }
                     return (intToRoman(result));
                 case "-":
-                    result = Integer.parseInt(ArrayExpression[0]) - Integer.parseInt(ArrayExpression[2]);
+                    result = Integer.parseInt(Roman_To_Arab[0]) - Integer.parseInt(Roman_To_Arab[2]);
                     if (result < 1) {
                         throw new Exception("Ошибка");
                     }
                     return (intToRoman(result));
             }
-
             return ("Ошибка");
         }
         throw new Exception();
@@ -181,7 +174,7 @@ public class Calc {
 
 
     public static String intToRoman(int number) throws Exception {
-        if (number >= 100 || number <= 0) {
+        if (number > 100 || number <= 0) {
             throw new Exception("Ошибка");
 
         }
@@ -209,7 +202,4 @@ public class Calc {
         initMap.put(1, "I");
         units = Collections.unmodifiableNavigableMap(initMap);
     }
-
-
-
-    }
+ }
